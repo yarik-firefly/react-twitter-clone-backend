@@ -80,7 +80,7 @@ app.patch(
 
 app.post("/upload", upload.single("image"), UploadCtrl.upload);
 
-app.listen(8888, () => {
+app.listen(process.env.PORT || 8888, () => {
   mongoose.connect(process.env.MONGO_DB);
   console.log("Server Run");
 });
