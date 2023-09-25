@@ -142,7 +142,7 @@ class UserController {
   async getUserInfo(req, res) {
     // res.send(user)
     try {
-      const user = await UserModel.findById(req.userId)
+      const user = await UserModel.findById(req.userId._id)
         .populate("tweets")
         .exec();
       console.log(req.userId);
