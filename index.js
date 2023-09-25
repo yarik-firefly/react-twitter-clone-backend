@@ -105,7 +105,7 @@ app.patch(
 
 app.post("/upload/", upload.single("image"), UploadCtrl.upload);
 
-app.listen(port, host, () => {
+app.listen(PORT, HOST, () => {
   mongoose.connect(process.env.MONGO_DB);
   console.log("Server Run");
 });
