@@ -16,11 +16,22 @@ import { UploadCtrl } from "./controllers/UploadFilesController.js";
 const app = express();
 
 const port = process.env.PORT || 8888;
-const host = process.env.YOUR_HOST || '0.0.0.0';;
+const host = process.env.YOUR_HOST || "0.0.0.0";
 
 app.use(cors());
 
 app.use(express.json());
+
+await mongoose
+  .connect(`${process.env.MONGO_DB}`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useMongoClient: true,
+  })
+  .then(() => {
+    console.log("DB OK!");
+  });
 
 app.use(function (req, res, next) {
   //Enabling CORS
