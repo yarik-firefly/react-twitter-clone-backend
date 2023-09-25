@@ -16,14 +16,14 @@ import { UploadCtrl } from "./controllers/UploadFilesController.js";
 const app = express();
 
 const PORT = process.env.PORT || 8888;
-const HOST = process.env.YOUR_HOST || "0.0.0.0";
+const HOST = process.env.HOST || "0.0.0.0";
 
 app.use(cors());
 
 app.use(express.json());
 
 await mongoose
-  .connect(`${process.env.MONGO_DB}`, {
+  .connect("process.env.MONGO_DB", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
