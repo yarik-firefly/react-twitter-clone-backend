@@ -16,6 +16,7 @@ import { UploadCtrl } from "./controllers/UploadFilesController.js";
 const app = express();
 
 const port = process.env.PORT || 8888;
+const host = process.env.YOUR_HOST || '0.0.0.0';;
 
 app.use(cors());
 
@@ -93,7 +94,7 @@ app.patch(
 
 app.post("/upload/", upload.single("image"), UploadCtrl.upload);
 
-app.listen(port, "0.0.0.0", () => {
+app.listen(port, host, () => {
   mongoose.connect(process.env.MONGO_DB);
   console.log("Server Run");
 });
