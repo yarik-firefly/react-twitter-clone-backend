@@ -15,7 +15,7 @@ import { UploadCtrl } from "./controllers/UploadFilesController.js";
 
 const app = express();
 
-app.use(cors());
+// app.use(cors());
 
 app.use(express.json());
 
