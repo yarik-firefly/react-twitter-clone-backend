@@ -48,7 +48,7 @@ class UserController {
 
       sendEmail({
         emailFrom: "clone@twitter.com",
-        emailTo: req.body.email,
+        emailTo: data.email,
         subject: "Подтверждение почты Twitter Clone React",
         html: `Для того, чтобы подтвердить почту, перейдите <a href='${
           project.env.REACT_APP_API_URL || "http://localhost:"
