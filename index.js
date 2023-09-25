@@ -93,7 +93,7 @@ app.patch(
 
 app.post("/upload/", upload.single("image"), UploadCtrl.upload);
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   mongoose.connect(process.env.MONGO_DB);
   console.log("Server Run");
 });
