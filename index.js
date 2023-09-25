@@ -23,26 +23,26 @@ app.use(cors());
 app.use(express.json());
 
 await mongoose
-  .connect("process.env.MONGO_DB", {
+  .connect(`${process.env.MONGO_DB}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
-    useMongoClient: true,
   })
   .then(() => {
     console.log("DB OK!");
   });
 
-app.use(function (req, res, next) {
-  //Enabling CORS
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization"
-  );
-  next();
-});
+console.log(process.env.MONGO_DB);
+
+// app.use(function (req, res, next) {
+//   //Enabling CORS
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization"
+//   );
+//   next();
+// });
 
 // const storage = multer.diskStorage({
 //   destination: function (_, __, cb) {
@@ -105,7 +105,7 @@ app.patch(
 
 app.post("/upload/", upload.single("image"), UploadCtrl.upload);
 
-app.listen(PORT, HOST, () => {
-  mongoose.connect(process.env.MONGO_DB);
+app.listen(PORT, () => {
+  // mongoose.connect(process.env.MONGO_DB);
   console.log("Server Run");
 });
