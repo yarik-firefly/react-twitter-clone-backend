@@ -15,8 +15,8 @@ import { UploadCtrl } from "./controllers/UploadFilesController.js";
 
 const app = express();
 
-const port = process.env.PORT || 8888;
-const host = process.env.YOUR_HOST || "0.0.0.0";
+const PORT = process.env.PORT || 8888;
+const HOST = process.env.YOUR_HOST || "0.0.0.0";
 
 app.use(cors());
 
