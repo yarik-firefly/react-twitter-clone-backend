@@ -23,7 +23,7 @@ app.use(cors());
 app.use(express.json());
 
 await mongoose
-  .connect(`${process.env.MONGO_DB}`, {
+  .connect(process.env.MONGO_DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
