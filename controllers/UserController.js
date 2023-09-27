@@ -42,20 +42,18 @@ class UserController {
         ),
       };
 
-      // const { password, confirm_hash, ...dataUser } = data;
-
-      const user = await UserModel.create(data);
-
       sendEmail({
-        emailFrom: "clone@twitter.com",
+        emailFrom: "toporkov.frontenddev@gmail.com",
         emailTo: data.email,
         subject: "Подтверждение почты Twitter Clone React",
         html: `Для того, чтобы подтвердить почту, перейдите <a href='${
-          project.env.REACT_APP_API_URL || "http://localhost:"
+          process.env.REACT_APP_API_URL || "http://localhost:"
         }${process.env.PORT || 8888}/auth/verify?hash=${
           data.confirm_hash
         }'>по этой ссылке</a>`,
       });
+
+      const user = await UserModel.create(data);
 
       res.json({
         status: "success",
