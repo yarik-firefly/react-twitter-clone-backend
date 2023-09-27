@@ -48,7 +48,7 @@ class UserController {
         subject: "Подтверждение почты Twitter Clone React",
         html: `Для того, чтобы подтвердить почту, перейдите <a href='${
           process.env.REACT_APP_API_URL || "http://localhost:8888"
-        }/auth/verify?hash=${data.confirm_hash}'>по этой ссылке</a>`,
+        }auth/verify?hash=${data.confirm_hash}'>по этой ссылке</a>`,
       });
 
       const user = await UserModel.create(data);
