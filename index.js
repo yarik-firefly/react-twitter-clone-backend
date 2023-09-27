@@ -12,6 +12,7 @@ import cors from "cors";
 import checkAuth from "./utils/checkAuth.js";
 import multer from "multer";
 import { UploadCtrl } from "./controllers/UploadFilesController.js";
+import { CommentCtrl } from "./controllers/CommentsController.js";
 
 const app = express();
 
@@ -59,6 +60,10 @@ const upload = multer({ storage: storage });
 
 app.use(passport.initialize());
 
+app.get("/comments", CommentCtrl.getAll);
+app.get("/users/comments/:id", CommentCtrl.getCommentsUnderTweet);
+app.post("/users/tweets/:id", checkAuth, CommentCtrl.create);
+
 app.get(
   "/users/me",
   // passport.authenticate("jwt", { session: false }),
@@ -82,7 +87,7 @@ app.get("/tweets", TweetsCtrl.index);
 app.get("/tweet/:id", TweetsCtrl.show);
 app.get("/users/tweets/:id", TweetsCtrl.getUserTweets);
 app.post(
-  "/tweet/",
+  "/tweet",
   // passport.authenticate("jwt"),
   checkAuth,
   createTweetsValidations,

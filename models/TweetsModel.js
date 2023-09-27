@@ -14,6 +14,7 @@ const TweetsSchema = new Schema(
       type: Schema.Types.ObjectId,
     },
     images: Array,
+    comments: [{type: Schema.Types.ObjectId, ref: "Comment"}],
   },
   { timestamps: true }
 );
