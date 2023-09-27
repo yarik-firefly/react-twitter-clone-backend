@@ -47,10 +47,8 @@ class UserController {
         emailTo: data.email,
         subject: "Подтверждение почты Twitter Clone React",
         html: `Для того, чтобы подтвердить почту, перейдите <a href='${
-          process.env.REACT_APP_API_URL || "http://localhost:"
-        }${process.env.PORT || 8888}/auth/verify?hash=${
-          data.confirm_hash
-        }'>по этой ссылке</a>`,
+          process.env.REACT_APP_API_URL || "http://localhost:8888"
+        }/auth/verify?hash=${data.confirm_hash}'>по этой ссылке</a>`,
       });
 
       const user = await UserModel.create(data);
@@ -84,7 +82,7 @@ class UserController {
         user.confirmed = true;
         user.save();
 
-        res.send("Ваш аккаунт подтверждён!");
+        res.send("Ваш аккаунт подтверждён! Можете входить в аккаунт 😁");
       } else {
         res.status(404);
       }
