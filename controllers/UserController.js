@@ -156,6 +156,43 @@ class UserController {
       });
     }
   }
+
+  async update(req, res) {
+    const user = req.userId;
+    console.log(user);
+
+    try {
+      if (user) {
+        console.log(req.body.avatar);
+        UserModel.updateOne(
+          {
+            _id: user._id,
+          },
+          {
+            avatarUrl: req.body.avatar,
+          }
+        ).then((doc) => {
+          if (!doc) {
+            res.status(400).json({
+              status: "error",
+              message: "Фото не добавлено",
+            });
+          }
+
+          res.send({
+            status: "success",
+          });
+        });
+      } else {
+        res.status(404).send();
+      }
+    } catch (error) {
+      res.status(500).json({
+        message: "Не удалось загрузить фото",
+        error,
+      });
+    }
+  }
 }
 
 export const UserCtrl = new UserController();

@@ -24,10 +24,14 @@ app.use(cors());
 app.use(express.json());
 
 await mongoose
-  .connect(process.env.MONGO_DB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    process.env.MONGO_DB ||
+      "mongodb+srv://Yaroslav:Yarik13579@twitter-clone.nyhgni2.mongodb.net/?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => {
     console.log("DB OK!");
   });
@@ -74,6 +78,7 @@ app.get("/users", UserCtrl.index);
 app.post("/auth/register", registerValidations, UserCtrl.create);
 app.get("/auth/verify", registerValidations, UserCtrl.verify);
 app.get("/users/:id", UserCtrl.show);
+app.patch("/upload/avatar", checkAuth, UserCtrl.update);
 
 app.post(
   "/auth/login",

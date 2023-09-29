@@ -29,6 +29,7 @@ const UserSchema = mongoose.Schema(
     location: String,
     about: String,
     website: String,
+    avatarUrl: String,
   },
   { timestamps: true }
 );
